@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Amel Zarrar — Writer & Content Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #F9F7F4;
+    --ink: #1A1814;
+    --muted: #7A7570;
+    --accent: #C5A882;
+    --line: #E2DDD8;
+    --white: #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 4rem;
+    background: rgba(249,247,244,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* SECTIONS */
+  section { padding: 7rem 4rem; max-width: 1100px; margin: 0 auto; }
+
+  /* HERO */
+  #hero {
+    padding-top: 13rem;
+    padding-bottom: 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.2s;
+  }
+
+  .hero-text h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.6rem;
+  }
+
+  .hero-text h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 380px;
+    margin-bottom: 2.4rem;
+    line-height: 1.8;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border: 1px solid var(--ink);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .hero-cta:hover { background: var(--ink); color: var(--bg); }
+
+  .hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-left: 3rem;
+    border-left: 1px solid var(--line);
+    align-self: center;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  /* DIVIDER */
+  .divider {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    border: none;
+    border-top: 1px solid var(--line);
+  }
+
+  /* SECTION HEADERS */
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 5rem;
+    align-items: start;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.3s;
+  }
+
+  .about-body p {
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 2rem;
+  }
+
+  .skill-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--line);
+    padding: 0.4rem 0.9rem;
+    color: var(--ink);
+    background: var(--white);
+  }
+
+  /* WORK SAMPLES */
+  #work { opacity: 0; animation: fadeUp 0.9s ease forwards 0.4s; }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+
+  .work-card {
+    background: var(--bg);
+    padding: 2.5rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .work-card:hover { background: var(--white); }
+
+  .work-card-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+
+  .work-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .work-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 1.4rem;
+  }
+
+  .work-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .work-tool {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    padding: 0.25rem 0.65rem;
+  }
+
+  /* EXPERIENCE */
+  #experience { opacity: 0; animation: fadeUp 0.9s ease forwards 0.5s; }
+
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .exp-item:first-child { border-top: 1px solid var(--line); }
+
+  .exp-date {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    padding-top: 0.2rem;
+  }
+
+  .exp-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+  }
+
+  .exp-company {
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.7rem;
+  }
+
+  .exp-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* CONTACT */
+  #contact {
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.6s;
+  }
+
+  #contact .section-title { margin-bottom: 1rem; }
+
+  .contact-sub {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .contact-link.primary {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .contact-link.primary:hover { background: var(--accent); }
+
+  .contact-link.secondary {
+    border: 1px solid var(--ink);
+    color: var(--ink);
+  }
+  .contact-link.secondary:hover { background: var(--ink); color: var(--bg); }
+
+  /* FOOTER */
+  footer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* FIGMA SECTION */
+  #figma { opacity: 0; animation: fadeUp 0.9s ease forwards 0.45s; }
+  .figma-canvas { background: #E8E3DC; border-radius: 12px; padding: 2rem 1.5rem 1.5rem; margin-bottom: 2rem; }
+  .figma-piece-label { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: #9e9790; margin-bottom: 0.4rem; }
+  .figma-piece-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 0.3rem; }
+  .figma-piece-desc { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.2rem; line-height: 1.6; }
+  .frames-row { display: flex; gap: 1.2rem; align-items: flex-start; flex-wrap: wrap; }
+  .frame-wrapper { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .phone { width: 155px; background: #fff; border-radius: 20px; border: 1.5px solid #d4cec7; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .phone-notch { background: #f0ebe5; height: 18px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #e0dbd4; }
+  .phone-notch-pill { width: 38px; height: 4px; background: #c8c2bb; border-radius: 2px; }
+  .phone-body { padding: 12px 11px 14px; min-height: 255px; }
+  .app-header { display: flex; align-items: center; gap: 6px; margin-bottom: 12px; }
+  .app-back { width: 14px; height: 14px; border-left: 2px solid #4a90d9; border-bottom: 2px solid #4a90d9; transform: rotate(45deg); flex-shrink: 0; margin-right: 2px; }
+  .app-title-text { font-size: 10.5px; font-weight: 500; color: #1a1814; }
+  .error-icon-wrap { display: flex; justify-content: center; margin-bottom: 9px; }
+  .error-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+  .error-icon.bad { background: #fde8e8; } .error-icon.good { background: #e8f4fd; }
+  .screen-heading { font-size: 11px; font-weight: 500; text-align: center; margin-bottom: 6px; line-height: 1.3; }
+  .screen-heading.bad { color: #c0392b; } .screen-heading.good { color: #1565c0; }
+  .screen-body { font-size: 9.5px; color: #5a5550; text-align: center; line-height: 1.55; margin-bottom: 10px; }
+  .screen-divider { height: 1px; background: #ede8e2; margin: 8px 0; }
+  .phone-btn { display: block; width: 100%; padding: 6px 0; border-radius: 7px; font-size: 9.5px; font-weight: 500; text-align: center; margin-bottom: 5px; }
+  .phone-btn.primary { background: #1565c0; color: #fff; }
+  .phone-btn.primary-bad { background: #c0392b; color: #fff; }
+  .phone-btn.secondary { background: #f0ebe5; color: #5a5550; }
+  .badge-before { display: inline-block; background: #fde8e8; color: #a93226; font-size: 8.5px; font-weight: 500; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 7px; }
+  .badge-after { display: inline-block; background: #e8f4fd; color: #1565c0; font-size: 8.5px; font-weight: 500; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 7px; }
+  .arrow-between { display: flex; align-items: center; padding-top: 90px; flex-direction: column; gap: 4px; }
+  .arrow-horiz { width: 28px; height: 1.5px; background: #b0a89f; position: relative; }
+  .arrow-horiz::after { content: ''; position: absolute; right: -1px; top: -4px; border-left: 6px solid #b0a89f; border-top: 4.5px solid transparent; border-bottom: 4.5px solid transparent; }
+  .arrow-tag { font-size: 8.5px; color: #9e9790; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+  .figma-annotation { background: #fffbe6; border: 1px solid #f0d060; border-radius: 6px; padding: 6px 9px; font-size: 9.5px; color: #7a6020; line-height: 1.5; max-width: 138px; margin-top: 4px; text-align: left; }
+  .figma-annotation strong { display: block; font-weight: 500; margin-bottom: 2px; color: #5a4010; }
+  .figma-annotation.good { background: #edfff4; border-color: #7dd4a0; color: #1a5c34; }
+  .figma-annotation.good strong { color: #0e3d22; }
+  .figma-rule-card { background: #fff; border: 1px solid #d4cec7; border-radius: 8px; padding: 10px 14px; margin-top: 14px; font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+  .figma-rule-card strong { font-weight: 500; color: var(--ink); }
+  .flow-node { background: #fff; border: 1.5px solid #d4cec7; border-radius: 9px; padding: 9px 12px; text-align: center; min-width: 96px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .flow-node.start { background: #e8f4fd; border-color: #a0c8ef; }
+  .flow-node.yes-p { background: #edfaf2; border-color: #7dd4a0; }
+  .flow-node.no-p  { background: #fdeaea; border-color: #f0a0a0; }
+  .flow-node-title { font-size: 10px; font-weight: 500; color: #1a1814; line-height: 1.3; }
+  .flow-node-sub { font-size: 9px; color: #7a7570; margin-top: 2px; line-height: 1.3; }
+  .flow-arrow-v { display: flex; flex-direction: column; align-items: center; }
+  .v-line { width: 1.5px; height: 22px; background: #9e9790; position: relative; }
+  .v-line::after { content: ''; position: absolute; bottom: -1px; left: -4px; border-top: 6px solid #9e9790; border-left: 4px solid transparent; border-right: 4px solid transparent; }
+  .diamond-wrap { position: relative; width: 100px; height: 70px; display: flex; align-items: center; justify-content: center; }
+  .diamond-bg { position: absolute; inset: 0; background: #fff8e6; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); border: 2px solid #e6c040; }
+  .diamond-text { position: relative; z-index: 1; font-size: 9.5px; font-weight: 500; color: #7a5800; text-align: center; line-height: 1.3; padding: 0 14px; }
+  .branch-row { display: flex; justify-content: center; align-items: flex-start; }
+  .branch-arm { display: flex; flex-direction: column; align-items: center; }
+  .h-seg { height: 1.5px; background: #9e9790; }
+  .v-drop { width: 1.5px; height: 24px; background: #9e9790; position: relative; }
+  .v-drop::after { content: ''; position: absolute; bottom: -1px; left: -4px; border-top: 6px solid #9e9790; border-left: 4px solid transparent; border-right: 4px solid transparent; }
+  .branch-labels { display: flex; justify-content: space-between; width: 100%; padding: 0 16px; margin-bottom: 2px; }
+  .yes-lbl { font-size: 8.5px; color: #2e8a50; font-weight: 500; letter-spacing: 0.06em; }
+  .no-lbl  { font-size: 8.5px; color: #c0392b; font-weight: 500; letter-spacing: 0.06em; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    section { padding: 5rem 1.5rem; }
+    #hero { grid-template-columns: 1fr; padding-top: 10rem; gap: 2.5rem; }
+    .hero-stats { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 2rem; flex-direction: row; gap: 3rem; }
+    #about { grid-template-columns: 1fr; gap: 2.5rem; }
+    .work-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-name" href="#hero">Amel Zarrar</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#figma">Figma</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <h1>Writer &amp;<br/><em>Content</em><br/>Specialist</h1>
+    <p class="hero-tagline">Turning complex information into clear, user-focused content — across technical documentation, UX writing, and global localization.</p>
+    <a href="#work" class="hero-cta">View My Work</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">30+</div>
+      <div class="stat-label">Technical projects delivered</div>
+    </div>
+    <div>
+      <div class="stat-num">70+</div>
+      <div class="stat-label">Content projects as team lead</div>
+    </div>
+    <div>
+      <div class="stat-num">5+</div>
+      <div class="stat-label">Years writing experience</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ABOUT -->
+<section id="about">
+  <div>
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">Economics mind,<br/><em>writer's</em> instinct.</h2>
+  </div>
+  <div class="about-body">
+    <p>I have a background in economics and am currently completing a Master's in International Economic Policy at Julius-Maximilians-Universität Würzburg. I focus on making complex, technical information accessible and engaging for real users.</p>
+    <p>My experience spans fintech, blockchain, and healthcare technology — working with cross-functional teams to create structured documentation, UX content, and localization workflows. I care about precision, clarity, and content that genuinely serves its audience.</p>
+    <p>Based in Bamberg, Bavaria. Open to working student and internship roles in English-speaking environments.</p>
+    <div class="skills-grid">
+      <span class="skill-tag">UX Writing</span>
+      <span class="skill-tag">DITA XML</span>
+      <span class="skill-tag">Technical Writing</span>
+      <span class="skill-tag">Figma</span>
+      <span class="skill-tag">Localization</span>
+      <span class="skill-tag">Phrase TMS</span>
+      <span class="skill-tag">Translation Keys</span>
+      <span class="skill-tag">Glossary Management</span>
+      <span class="skill-tag">Oxygen XML</span>
+      <span class="skill-tag">Tridion</span>
+      <span class="skill-tag">Salesforce</span>
+      <span class="skill-tag">SharePoint</span>
+      <span class="skill-tag">MS Excel</span>
+      <span class="skill-tag">Miro</span>
+      <span class="skill-tag">SEO</span>
+      <span class="skill-tag">Document Control</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- WORK SAMPLES -->
+<section id="work">
+  <p class="section-label">Selected Work</p>
+  <h2 class="section-title">What I've built<br/>and written.</h2>
+
+  <div class="work-grid">
+
+    <div class="work-card">
+      <div class="work-card-tag">UX &amp; Digital Content</div>
+      <h3>UX Writing &amp; Documentation — WSAudiology</h3>
+      <p>Working as a UX writer for a global hearing care brand writing and editing interface copy for digital products, designing content layouts in Figma, and migrating company documentation to Tridion CMS using DITA XML and Oxygen XML. Also responsible for creating and maintaining translation keys, Phrase-compatible Excel glossaries, and glossary data in Phrase TMS.</p>
+      <div class="work-tools">
+        <span class="work-tool">UX Writing</span>
+        <span class="work-tool">Figma</span>
+        <span class="work-tool">DITA XML</span>
+        <span class="work-tool">Oxygen XML</span>
+        <span class="work-tool">Tridion</span>
+        <span class="work-tool">Phrase TMS</span>
+        <span class="work-tool">SharePoint</span>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-card-tag">Technical Documentation</div>
+      <h3>Blockchain Whitepapers &amp; GitBooks</h3>
+      <p>Produced over 30 end-to-end technical documents for DeFi products  including yield farms, metaverse platforms, and staking pools translating highly technical concepts into structured, audience-appropriate content.</p>
+      <div class="work-tools">
+        <span class="work-tool">Technical Writing</span>
+        <span class="work-tool">GitBook</span>
+        <span class="work-tool">Web3</span>
+        <span class="work-tool">SEO</span>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-card-tag">Localization &amp; Content Ops</div>
+      <h3>Localization &amp; Glossary Management — WSAudiology</h3>
+      <p>Created and maintained translation keys in Phrase TMS, built Phrase-compatible Excel files for glossaries including source terms, translations, and definitions, and maintained live glossaries to ensure terminology consistency across all markets and languages.</p>
+      <div class="work-tools">
+        <span class="work-tool">Phrase TMS</span>
+        <span class="work-tool">Translation Keys</span>
+        <span class="work-tool">Glossary Management</span>
+        <span class="work-tool">Excel</span>
+        <span class="work-tool">SharePoint</span>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-card-tag">Content Leadership</div>
+      <h3>B2B Content Team Lead — Allure Digital</h3>
+      <p>Led a team of five writers delivering 70+ B2B content and social media projects. Created project timelines, reviewed output for brand consistency, and managed client deliverables end-to-end with a high satisfaction rate.</p>
+      <div class="work-tools">
+        <span class="work-tool">Content Strategy</span>
+        <span class="work-tool">B2B Marketing</span>
+        <span class="work-tool">Editorial Review</span>
+        <span class="work-tool">Project Management</span>
+      </div>
+    </div>
+
+    <div class="work-card" style="grid-column: 1 / -1;">
+      <div class="work-card-tag">Blockchain &middot; Technical Writing Sample</div>
+      <h3>Blockchain Game Whitepaper &mdash; Confidential Client</h3>
+      <p>Authored a full-length technical whitepaper for a blockchain-based play-to-earn action battle game. Covered tokenomics, NFT infrastructure, game mechanics, staking pools, and roadmap &mdash; translating complex DeFi and Web3 concepts into clear, audience-appropriate language for investors and players alike.</p>
+      <div style="margin: 1rem 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden;">
+        <div style="background:#0d1b2e; padding: 1.5rem 2rem;">
+          <div style="display:flex; align-items:center; gap: 1rem; margin-bottom: 1.2rem;">
+            <div style="width:42px;height:42px;background:rgba(255,255,255,0.08);border-radius:8px;filter:blur(4px);"></div>
+            <div>
+              <div style="width:140px;height:12px;background:rgba(255,255,255,0.15);border-radius:3px;filter:blur(5px);margin-bottom:6px;"></div>
+              <div style="width:80px;height:9px;background:rgba(255,255,255,0.08);border-radius:3px;filter:blur(5px);"></div>
+            </div>
+            <div style="margin-left:auto;background:rgba(255,107,53,0.15);border:1px solid rgba(255,107,53,0.3);border-radius:4px;padding:3px 10px;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#ff6b35;font-family:'DM Sans',sans-serif;">Confidential</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem;margin-bottom:1rem;">
+            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:0.8rem;">
+              <div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.5rem;font-family:'DM Sans',sans-serif;">Abstract</div>
+              <div style="width:100%;height:7px;background:rgba(255,255,255,0.08);border-radius:2px;margin-bottom:4px;filter:blur(2px);"></div>
+              <div style="width:90%;height:7px;background:rgba(255,255,255,0.06);border-radius:2px;margin-bottom:4px;filter:blur(2px);"></div>
+              <div style="width:80%;height:7px;background:rgba(255,255,255,0.05);border-radius:2px;filter:blur(2px);"></div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:0.8rem;">
+              <div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.5rem;font-family:'DM Sans',sans-serif;">Tokenomics</div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;"><div style="width:50%;height:6px;background:rgba(255,255,255,0.07);border-radius:2px;filter:blur(2px);"></div><div style="width:20%;height:6px;background:rgba(100,180,255,0.25);border-radius:2px;"></div></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;"><div style="width:45%;height:6px;background:rgba(255,255,255,0.07);border-radius:2px;filter:blur(2px);"></div><div style="width:20%;height:6px;background:rgba(100,180,255,0.25);border-radius:2px;"></div></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;"><div style="width:55%;height:6px;background:rgba(255,255,255,0.07);border-radius:2px;filter:blur(2px);"></div><div style="width:20%;height:6px;background:rgba(100,180,255,0.25);border-radius:2px;"></div></div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:0.8rem;">
+              <div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.5rem;font-family:'DM Sans',sans-serif;">Roadmap</div>
+              <div style="display:flex;flex-direction:column;gap:5px;">
+                <div style="display:flex;align-items:center;gap:5px;"><div style="width:7px;height:7px;background:#4aa8ff;border-radius:50%;flex-shrink:0;"></div><div style="width:70%;height:6px;background:rgba(255,255,255,0.07);border-radius:2px;filter:blur(2px);"></div></div>
+                <div style="display:flex;align-items:center;gap:5px;"><div style="width:7px;height:7px;background:#4aa8ff;border-radius:50%;flex-shrink:0;"></div><div style="width:60%;height:6px;background:rgba(255,255,255,0.07);border-radius:2px;filter:blur(2px);"></div></div>
+                <div style="display:flex;align-items:center;gap:5px;"><div style="width:7px;height:7px;background:rgba(255,255,255,0.15);border-radius:50%;flex-shrink:0;"></div><div style="width:65%;height:6px;background:rgba(255,255,255,0.05);border-radius:2px;filter:blur(2px);"></div></div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+            <span style="font-size:0.68rem;background:rgba(74,168,255,0.1);border:1px solid rgba(74,168,255,0.2);color:#4aa8ff;padding:3px 9px;border-radius:4px;letter-spacing:0.06em;font-family:'DM Sans',sans-serif;">Abstract</span>
+            <span style="font-size:0.68rem;background:rgba(74,168,255,0.1);border:1px solid rgba(74,168,255,0.2);color:#4aa8ff;padding:3px 9px;border-radius:4px;letter-spacing:0.06em;font-family:'DM Sans',sans-serif;">Game mechanics</span>
+            <span style="font-size:0.68rem;background:rgba(74,168,255,0.1);border:1px solid rgba(74,168,255,0.2);color:#4aa8ff;padding:3px 9px;border-radius:4px;letter-spacing:0.06em;font-family:'DM Sans',sans-serif;">Tokenomics</span>
+            <span style="font-size:0.68rem;background:rgba(74,168,255,0.1);border:1px solid rgba(74,168,255,0.2);color:#4aa8ff;padding:3px 9px;border-radius:4px;letter-spacing:0.06em;font-family:'DM Sans',sans-serif;">NFT categorisation</span>
+            <span style="font-size:0.68rem;background:rgba(74,168,255,0.1);border:1px solid rgba(74,168,255,0.2);color:#4aa8ff;padding:3px 9px;border-radius:4px;letter-spacing:0.06em;font-family:'DM Sans',sans-serif;">Staking &amp; farming</span>
+            <span style="font-size:0.68rem;background:rgba(74,168,255,0.1);border:1px solid rgba(74,168,255,0.2);color:#4aa8ff;padding:3px 9px;border-radius:4px;letter-spacing:0.06em;font-family:'DM Sans',sans-serif;">Roadmap</span>
+            <span style="font-size:0.68rem;background:rgba(74,168,255,0.1);border:1px solid rgba(74,168,255,0.2);color:#4aa8ff;padding:3px 9px;border-radius:4px;letter-spacing:0.06em;font-family:'DM Sans',sans-serif;">Mission &amp; vision</span>
+            <span style="font-size:0.68rem;background:rgba(74,168,255,0.12);border:1px solid rgba(74,168,255,0.25);color:#4aa8ff;padding:3px 9px;border-radius:4px;letter-spacing:0.06em;font-family:'DM Sans',sans-serif;">32 pages</span>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:0.82rem;color:var(--muted);line-height:1.7;margin-top:0.8rem;">The document served both crypto-native investors and general players discovering blockchain gaming for the first time &mdash; requiring two different voices and levels of technical depth within the same document. Client name redacted for confidentiality.</p>
+      <div class="work-tools" style="margin-top:0.8rem;">
+        <span class="work-tool">Whitepaper</span>
+        <span class="work-tool">Web3 / DeFi</span>
+        <span class="work-tool">NFT</span>
+        <span class="work-tool">Tokenomics</span>
+        <span class="work-tool">Technical Writing</span>
+        <span class="work-tool">GitBook</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- FIGMA WIREFRAMES -->
+<section id="figma">
+  <p class="section-label">Figma Wireframes</p>
+  <h2 class="section-title">UX work in<br/><em>Figma.</em></h2>
+  <p style="font-size:0.88rem;color:var(--muted);max-width:560px;margin-bottom:2.5rem;line-height:1.75;">These wireframes recreate the type of Figma work I did at WSAudiology — created independently to protect company privacy. They demonstrate my approach to content flow mapping and UX copy rewriting.</p>
+
+  <!-- PIECE 1: BEFORE / AFTER -->
+  <div class="figma-canvas">
+    <div class="figma-piece-label">Portfolio piece 01</div>
+    <div class="figma-piece-title">UX copy rewrite — before &amp; after</div>
+    <div class="figma-piece-desc">Redesigned error screen copy using the problem → cause → solution framework, duplicating the frame in Figma to show the before and after side by side.</div>
+
+    <div class="frames-row">
+      <!-- BEFORE -->
+      <div class="frame-wrapper">
+        <div class="phone">
+          <div class="phone-notch"><div class="phone-notch-pill"></div></div>
+          <div class="phone-body">
+            <div style="text-align:center;margin-bottom:4px;"><span class="badge-before">Before</span></div>
+            <div class="app-header">
+              <div class="app-back"></div>
+              <div class="app-title-text">Device Setup</div>
+            </div>
+            <div class="error-icon-wrap"><div class="error-icon bad">⚠️</div></div>
+            <div class="screen-heading bad">Bluetooth connectivity error</div>
+            <div class="screen-body">Opps, your hearing aid cannot be connected.<br/><br/>Try again.</div>
+            <div class="screen-divider"></div>
+            <div class="phone-btn primary-bad">Try again</div>
+            <div class="phone-btn secondary">Cancel</div>
+          </div>
+        </div>
+        <div class="figma-annotation">
+          <strong>Issues</strong>
+          Vague cause, typo "Opps", no guidance on what to do
+        </div>
+      </div>
+
+      <!-- ARROW -->
+      <div class="arrow-between">
+        <div class="arrow-horiz"></div>
+        <div class="arrow-tag">Rewrote</div>
+      </div>
+
+      <!-- AFTER -->
+      <div class="frame-wrapper">
+        <div class="phone">
+          <div class="phone-notch"><div class="phone-notch-pill"></div></div>
+          <div class="phone-body">
+            <div style="text-align:center;margin-bottom:4px;"><span class="badge-after">After</span></div>
+            <div class="app-header">
+              <div class="app-back"></div>
+              <div class="app-title-text">Device Setup</div>
+            </div>
+            <div class="error-icon-wrap"><div class="error-icon good">🦻</div></div>
+            <div class="screen-heading good">Hearing aid not found</div>
+            <div class="screen-body">We couldn't find your hearing aid.<br/><br/>This usually happens when the device is out of range or Bluetooth is unstable. Move it closer and turn Bluetooth off and on.</div>
+            <div class="screen-divider"></div>
+            <div class="phone-btn primary">Try again</div>
+            <div class="phone-btn secondary">Get more help</div>
+          </div>
+        </div>
+        <div class="figma-annotation good">
+          <strong>Improvements</strong>
+          States problem, explains why, gives actionable steps, second escape route added
+        </div>
+      </div>
+    </div>
+
+    <div class="figma-rule-card">
+      <strong>Copy framework applied:</strong> Problem (what happened) → Cause (why it happened) → Solution (what to do). Heading changed from technical jargon to user-friendly language.
+    </div>
+  </div>
+
+  <!-- PIECE 2: CONTENT FLOW -->
+  <div class="figma-canvas">
+    <div class="figma-piece-label">Portfolio piece 02</div>
+    <div class="figma-piece-title">Conditional content flow wireframe</div>
+    <div class="figma-piece-desc">Mapped a branching content flow showing how screen content adapts based on a yes/no decision — each path leads to different screens with distinct headings, body copy, and CTAs.</div>
+
+    <div style="display:flex;justify-content:center;flex-direction:column;align-items:center;gap:0;">
+      <!-- Start -->
+      <div class="flow-node start" style="margin-bottom:0;">
+        <div class="flow-node-title">Setup screen</div>
+        <div class="flow-node-sub">User opens app</div>
+      </div>
+      <!-- Arrow down -->
+      <div class="flow-arrow-v"><div class="v-line"></div></div>
+      <!-- Diamond -->
+      <div class="diamond-wrap">
+        <div class="diamond-bg"></div>
+        <div class="diamond-text">Is device<br/>paired?</div>
+      </div>
+      <!-- Branch labels -->
+      <div class="branch-labels" style="width:320px;">
+        <span class="no-lbl">← No</span>
+        <span class="yes-lbl">Yes →</span>
+      </div>
+      <!-- Horizontal lines -->
+      <div style="width:320px;display:flex;align-items:flex-start;">
+        <!-- No arm -->
+        <div class="branch-arm" style="flex:1;">
+          <div class="h-seg" style="width:100%;"></div>
+          <div class="v-drop"></div>
+          <div class="flow-node no-p">
+            <div class="flow-node-title">Pair your device</div>
+            <div class="flow-node-sub">Step-by-step<br/>pairing guide</div>
+          </div>
+          <div class="flow-arrow-v" style="padding:0;"><div class="v-line"></div></div>
+          <div class="flow-node no-p">
+            <div class="flow-node-title">Bluetooth prompt</div>
+            <div class="flow-node-sub">Enable BT &amp;<br/>scan for device</div>
+          </div>
+        </div>
+        <!-- Centre spacer -->
+        <div style="width:100px;"></div>
+        <!-- Yes arm -->
+        <div class="branch-arm" style="flex:1;">
+          <div class="h-seg" style="width:100%;"></div>
+          <div class="v-drop"></div>
+          <div class="flow-node yes-p">
+            <div class="flow-node-title">Welcome back</div>
+            <div class="flow-node-sub">Device found,<br/>connecting…</div>
+          </div>
+          <div class="flow-arrow-v" style="padding:0;"><div class="v-line"></div></div>
+          <div class="flow-node yes-p">
+            <div class="flow-node-title">Dashboard</div>
+            <div class="flow-node-sub">Hearing profile<br/>&amp; settings</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="figma-rule-card">
+      <strong>Content adapts based on the Yes/No answer.</strong> The No path shows pairing instructions; the Yes path skips directly to the dashboard. Each branch has its own heading, body copy, and CTA button.
+    </div>
+  </div>
+
+  <!-- PIECE 3: MIRO PROTOTYPE -->
+  <div class="figma-canvas" style="padding-bottom:1.5rem;">
+    <div class="figma-piece-label">Portfolio piece 03 — Miro Board</div>
+    <div class="figma-piece-title">SharePoint Writing Services Hub</div>
+    <div class="figma-piece-desc">Prototyped an internal SharePoint intranet page in Miro, mapping all components — navigation, hero, sidebar, service cards, and an intake form — before development.</div>
+
+    <!-- Mini preview of the SharePoint page -->
+    <div style="border:2px solid #FFD02F;border-radius:6px;overflow:hidden;background:#fff;font-family:'DM Sans',sans-serif;">
+      <!-- SP nav mini -->
+      <div style="background:#0F6CBD;display:flex;align-items:center;height:34px;padding:0 12px;gap:10px;">
+        <div style="width:14px;height:14px;background:#fff;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:8px;height:8px;background:#0F6CBD;border-radius:1px;"></div></div>
+        <span style="font-size:9.5px;color:#fff;font-weight:500;">WSAudiology Intranet</span>
+        <div style="display:flex;gap:0;margin-left:8px;">
+          <span style="font-size:9px;color:rgba(255,255,255,0.7);padding:0 8px;height:34px;line-height:34px;">Home</span>
+          <span style="font-size:9px;color:#fff;padding:0 8px;height:34px;line-height:34px;border-bottom:2px solid #fff;font-weight:500;">Writing Services</span>
+          <span style="font-size:9px;color:rgba(255,255,255,0.7);padding:0 8px;height:34px;line-height:34px;">Templates</span>
+          <span style="font-size:9px;color:rgba(255,255,255,0.7);padding:0 8px;height:34px;line-height:34px;">Resources</span>
+        </div>
+      </div>
+      <!-- Hero mini -->
+      <div style="background:linear-gradient(135deg,#0F3460,#0F6CBD);padding:16px 16px 14px;">
+        <div style="font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:5px;">Global Marketing · Content Team</div>
+        <div style="font-size:14px;font-weight:500;color:#fff;margin-bottom:5px;">Writing Services Hub</div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.7);max-width:300px;line-height:1.5;margin-bottom:10px;">Need content? Our team writes UX copy, documentation, and marketing materials.</div>
+        <div style="display:flex;gap:6px;">
+          <span style="background:#fff;color:#0F6CBD;font-size:9px;font-weight:500;padding:5px 12px;border-radius:3px;">Submit a Request</span>
+          <span style="border:1px solid rgba(255,255,255,0.35);color:#fff;font-size:9px;padding:5px 12px;border-radius:3px;">View Our Work</span>
+        </div>
+      </div>
+      <!-- Layout mini -->
+      <div style="display:flex;min-height:120px;">
+        <!-- Sidebar mini -->
+        <div style="width:110px;background:#f8f8f8;border-right:1px solid #e5e5e5;padding:10px 0;flex-shrink:0;">
+          <div style="font-size:7.5px;letter-spacing:0.1em;text-transform:uppercase;color:#999;padding:0 10px 6px;">Writing Services</div>
+          <div style="padding:5px 10px;font-size:9px;color:#0F6CBD;background:#EAF3FB;border-right:2px solid #0F6CBD;font-weight:500;">Overview</div>
+          <div style="padding:5px 10px;font-size:9px;color:#555;">Submit a Request</div>
+          <div style="padding:5px 10px;font-size:9px;color:#555;">Content Types</div>
+          <div style="padding:5px 10px;font-size:9px;color:#555;">Our Writers</div>
+          <div style="height:1px;background:#e5e5e5;margin:6px 0;"></div>
+          <div style="font-size:7.5px;letter-spacing:0.1em;text-transform:uppercase;color:#999;padding:0 10px 4px;">Resources</div>
+          <div style="padding:5px 10px;font-size:9px;color:#555;">Style Guide</div>
+          <div style="padding:5px 10px;font-size:9px;color:#555;">Templates</div>
+        </div>
+        <!-- Cards mini -->
+        <div style="flex:1;padding:12px;">
+          <div style="font-size:9.5px;font-weight:500;color:#1a1a1a;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #e5e5e5;">What we can help with</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">
+            <div style="border:1px solid #e5e5e5;border-radius:4px;padding:8px;"><div style="font-size:13px;margin-bottom:4px;">📄</div><div style="font-size:8.5px;font-weight:500;color:#1a1a1a;margin-bottom:2px;">UX &amp; App Copy</div><div style="font-size:7.5px;color:#777;line-height:1.4;">Screen headings, errors, tooltips &amp; flows.</div></div>
+            <div style="border:1px solid #e5e5e5;border-radius:4px;padding:8px;"><div style="font-size:13px;margin-bottom:4px;">📘</div><div style="font-size:8.5px;font-weight:500;color:#1a1a1a;margin-bottom:2px;">Technical Docs</div><div style="font-size:7.5px;color:#777;line-height:1.4;">Guides, SOPs &amp; DITA XML content.</div></div>
+            <div style="border:1px solid #e5e5e5;border-radius:4px;padding:8px;"><div style="font-size:13px;margin-bottom:4px;">🌍</div><div style="font-size:8.5px;font-weight:500;color:#1a1a1a;margin-bottom:2px;">Localization</div><div style="font-size:7.5px;color:#777;line-height:1.4;">Content prepped for Phrase TMS.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="figma-rule-card" style="margin-top:12px;">
+      <strong>Components mapped on the Miro board:</strong> Global nav with active states · Hero with dual CTAs · Persistent sidebar with grouped links · 6 service cards (icon, title, desc, CTA) · Intake form with dropdown · Announcement strip · Footer.
+      <br/><br/>
+      <a href="miro_prototype.html" target="_blank" style="color:var(--accent);font-weight:500;font-size:0.82rem;">View full interactive prototype →</a>
+    </div>
+  </div>
+
+</section>
+
+<hr class="divider"/>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Experience</p>
+  <h2 class="section-title">Where I've<br/>worked.</h2>
+
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-date">Apr 2025 — Present</div>
+      <div>
+        <div class="exp-role">Working Student — UX Writer &amp; Content Specialist</div>
+        <div class="exp-company">WSAudiology · Global Marketing · Hybrid</div>
+        <div class="exp-desc">Working as a UX writer creating interface copy for digital hearing care products. Migrating company documentation to Tridion CMS using DITA XML and Oxygen XML. Managing translation keys and Phrase-compatible Excel glossaries in Phrase TMS. Designing content layouts in Figma and organising workflows in Miro.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Jun 2024 — Apr 2025</div>
+      <div>
+        <div class="exp-role">Working Student — Designation Complaint Unit (DCU)</div>
+        <div class="exp-company">WSAudiology · On-site</div>
+        <div class="exp-desc">Worked in the Quality department, managing complaint inflow and forwarding cases to investigators. Tracked and visualised complaint data trends using Salesforce CRM and agile methodologies to support quality assurance processes.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Apr 2023 — Dec 2023</div>
+      <div>
+        <div class="exp-role">Content Team Lead</div>
+        <div class="exp-company">Allure Digital · On-site</div>
+        <div class="exp-desc">Led a team of five, delivering 70+ B2B content and social media projects. Owned timelines, editorial quality, and client satisfaction from brief to delivery.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Mar 2021 — Apr 2023</div>
+      <div>
+        <div class="exp-role">Technical Writer</div>
+        <div class="exp-company">Relymer Pvt Ltd · Remote</div>
+        <div class="exp-desc">Created whitepapers, GitBooks, web content, and press releases for 30+ blockchain projects including yield farms, metaverse platforms, and staking pools.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Jun 2019 — Aug 2020</div>
+      <div>
+        <div class="exp-role">Broker</div>
+        <div class="exp-company">Fintech Private Ltd · Pakistan</div>
+        <div class="exp-desc">Generated ~$100k in business for Pakistan Mercantile Exchange through fundamental and technical analysis and high-ROI portfolio recommendations.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Get In Touch</p>
+  <h2 class="section-title">Let's work<br/><em>together.</em></h2>
+  <p class="contact-sub">Open to working student and internship roles in technical writing, UX content, and localization.<br/>English-speaking teams, Bavaria or remote.</p>
+  <div class="contact-links">
+    <a class="contact-link primary" href="mailto:amelzarrar@gmail.com">amelzarrar@gmail.com</a>
+    <a class="contact-link secondary" href="https://www.linkedin.com/in/amel-zarrar/" target="_blank">LinkedIn Profile</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
