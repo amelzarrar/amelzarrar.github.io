@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salt On The Go — Brand Marketing</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f8f6f1;
+      --ink: #1a1a18;
+      --muted: #6b6b63;
+      --accent: #c8a45a;
+      --accent-light: #f0e8d6;
+      --white: #ffffff;
+      --border: #e0ddd5;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 8rem 3rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: 'S';
+      position: absolute;
+      right: -0.1em;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--serif);
+      font-size: clamp(20rem, 40vw, 36rem);
+      color: var(--accent-light);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .hero-tag {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1.05;
+      max-width: 14ch;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 1.125rem;
+      color: var(--muted);
+      max-width: 42ch;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+    .hero-cta {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--ink);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .hero-cta:hover { background: var(--accent); transform: translateY(-2px); }
+
+    /* SECTION WRAPPER */
+    section {
+      padding: 5rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .section-title em { font-style: italic; }
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 3rem;
+    }
+
+    /* LINKEDIN POSTS */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .post-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      position: relative;
+    }
+    .post-card::before {
+      content: attr(data-platform);
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .post-card h3 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .post-card p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .post-card p:last-child { margin-bottom: 0; }
+    .post-card .hashtags {
+      font-size: 0.8125rem;
+      color: var(--accent);
+      margin-top: 1.25rem;
+      line-height: 1.8;
+    }
+    .post-card .checkmarks p::before {
+      content: "✔  ";
+    }
+
+    /* BLOG */
+    .blog-wrap {
+      max-width: 680px;
+      margin-top: 3rem;
+    }
+    .blog-wrap h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .blog-wrap .blog-sub {
+      color: var(--muted);
+      font-style: italic;
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .blog-wrap h3 {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      margin: 2.5rem 0 0.75rem;
+    }
+    .blog-wrap p {
+      color: var(--muted);
+      font-size: 0.9375rem;
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+    .blog-wrap strong { color: var(--ink); font-weight: 500; }
+    .blog-principle {
+      border-left: 3px solid var(--accent);
+      padding-left: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .blog-principle p { margin-bottom: 0.5rem; }
+    .blog-wrap .blog-footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.875rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* INSTAGRAM */
+    .insta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .insta-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .insta-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 4rem;
+      color: var(--accent);
+      position: relative;
+      overflow: hidden;
+    }
+    .insta-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 40%, rgba(200,164,90,0.15), transparent 70%);
+    }
+    .insta-body {
+      padding: 1.5rem;
+    }
+    .insta-card h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .insta-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+    .insta-card .hashtags {
+      font-size: 0.775rem;
+      color: var(--accent);
+      line-height: 1.9;
+    }
+
+    /* SEO */
+    .seo-section { margin-top: 3rem; }
+    .seo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .seo-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 2rem;
+    }
+    .seo-block h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      margin-bottom: 1.25rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    th {
+      text-align: left;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 0.6rem 0;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    td:first-child { color: var(--ink); font-weight: 400; }
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      font-weight: 500;
+    }
+    .badge.high { background: #fce8e8; color: #c0392b; }
+    .badge.medium { background: #fef3cd; color: #b7730a; }
+
+    .long-tail-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+    .long-tail-list li {
+      font-size: 0.875rem;
+      color: var(--muted);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .long-tail-list li::before {
+      content: "→  ";
+      color: var(--accent);
+    }
+
+    .hashtag-tiers {
+      margin-top: 1rem;
+    }
+    .tier {
+      margin-bottom: 1.25rem;
+    }
+    .tier-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .tier-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .tag {
+      background: var(--accent-light);
+      color: var(--ink);
+      font-size: 0.775rem;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.02em;
+    }
+
+    .seo-tips {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: var(--ink);
+      color: var(--white);
+    }
+    .seo-tips h3 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      margin-bottom: 1.25rem;
+      color: var(--accent);
+    }
+    .seo-tips ol {
+      padding-left: 1.25rem;
+    }
+    .seo-tips li {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 0.75rem;
+      line-height: 1.7;
+    }
+    .seo-tips strong { color: var(--white); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--accent); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-tag, .hero h1, .hero-sub, .hero-cta {
+      animation: fadeUp 0.7s ease both;
+    }
+    .hero h1    { animation-delay: 0.1s; }
+    .hero-sub   { animation-delay: 0.2s; }
+    .hero-cta   { animation-delay: 0.3s; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      section { padding: 3.5rem 1.5rem; }
+      .divider { margin: 0 1.5rem; }
+      .posts-grid, .insta-grid, .seo-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-brand">Salt On The Go 🧂</a>
+    <ul class="nav-links">
+      <li><a href="#linkedin">LinkedIn</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#instagram">Instagram</a></li>
+      <li><a href="#seo">SEO</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-tag">Brand Marketing Pack</p>
+    <h1>Carry your <em>flavour.</em></h1>
+    <p class="hero-sub">Premium portable seasoning for people who refuse to eat bland food, wherever they are.</p>
+    <a href="#linkedin" class="hero-cta">View Content</a>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- LINKEDIN -->
+  <section id="linkedin">
+    <p class="section-label">LinkedIn</p>
+    <h2 class="section-title">Two posts, <em>two angles.</em></h2>
+
+    <div class="posts-grid">
+      <div class="post-card" data-platform="Post 01">
+        <h3>The Sad Desk Food Post</h3>
+        <p>You've eaten sad desk food. We've all eaten sad desk food.</p>
+        <p>The limp salad. The lukewarm meal prep. The airport sandwich that had potential but never stood a chance.</p>
+        <p>Here's the thing. It wasn't the food. It was the seasoning.</p>
+        <p><strong>Salt On The Go</strong> exists for the people who know that a pinch of the right salt changes everything. People who care about what they eat, wherever they eat it.</p>
+        <p>Pocket-sized. Carry-on safe. No more settling.</p>
+        <p>Because your lunch deserves better than the shakers that haven't been cleaned since 2019. 🧂</p>
+        <p>Try Salt On The Go → [link]</p>
+        <p class="hashtags">#SaltOnTheGo #OnTheGo #FoodLovers #MealPrep #WorkLunch #TasteMatters #PortableSeasoning #DeskLunch</p>
+      </div>
+
+      <div class="post-card" data-platform="Post 02">
+        <h3>The Values Post</h3>
+        <p>A question for the people who bring their own hot sauce to restaurants:</p>
+        <p>Why do we accept that flavour is only available at home?</p>
+        <p>Good seasoning shouldn't be a sit-down privilege. Whether you're eating at your desk, on a train, at a picnic, or between meetings, the food you fuel yourself with deserves to actually taste like something.</p>
+        <p>That's the whole idea behind <strong>Salt On The Go</strong>.</p>
+        <p>We're not just selling salt. We're for the people who pay attention. Who don't apologise for wanting things done right. Who understand that the small things, done well, make all the difference.</p>
+        <p>If that sounds like you, you're exactly who we made this for.</p>
+        <p><strong>Salt On The Go</strong> — carry your flavour. 🧂</p>
+        <p class="hashtags">#SaltOnTheGo #FoodFirst #CarryYourFlavour #PortableSeasoning #FoodieLife #EatWell #OnTheGoEating #TasteEverywhere</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- BLOG -->
+  <section id="blog">
+    <p class="section-label">Blog Post</p>
+    <h2 class="section-title">Long-form <em>brand story.</em></h2>
+
+    <div class="blog-wrap">
+      <h2>You Deserve Better Than Sad Desk Lunch</h2>
+      <p class="blog-sub">And yes, the solution fits in your pocket.</p>
+
+      <p>Let's be honest about something.</p>
+      <p>You spend time on your food. You meal prep on Sundays, you pick the good bread, you know the difference between table salt and something worth using. You care.</p>
+      <p>And then Monday comes, and you're eating at your desk, and everything tastes like nothing.</p>
+      <p>It's not the food. The food was good when you made it. It's what happened between your kitchen and your lunch break — the missing finishing touch, the flavour that never made it out of the house.</p>
+      <p>We started Salt On The Go because we were tired of that gap.</p>
+
+      <h3>The Gap Between Your Kitchen and Everywhere Else</h3>
+      <p>At home, you have everything you need. A full spice rack, good salt, a pinch of this and a twist of that. Eating at home can be an event, even when it's simple.</p>
+      <p>Out in the world? You're at the mercy of whatever's on the table. Restaurant salt shakers that are sticky or empty. Airport food that gave up on taste before it even started. Meal prep that was perfect on Sunday and somehow flat by Wednesday.</p>
+      <p>The problem isn't that you don't care. It's that the tools haven't followed you. Until now.</p>
+
+      <h3>What Salt On The Go Actually Is</h3>
+      <p>Salt On The Go is premium seasoning in a pocket-sized format. Designed for your bag, your desk drawer, your carry-on, your gym kit. Wherever you eat, it goes with you.</p>
+      <p>It's carry-on safe. It's refillable. It's made with quality that doesn't compromise just because the container is small.</p>
+      <p>But more than the product, it's a statement. You're someone who pays attention to the details. Who knows that the right pinch at the right moment turns a meal from fine into genuinely good.</p>
+
+      <h3>Who It's For</h3>
+
+      <div class="blog-principle">
+        <p>It's for the person who brings their own hot sauce to restaurants.</p>
+      </div>
+      <div class="blog-principle">
+        <p>It's for the meal prepper who puts care into Sunday cooking and wants that care to survive until Thursday.</p>
+      </div>
+      <div class="blog-principle">
+        <p>It's for the frequent traveller who has accepted that airport food is what it is, but refuses to accept that it has to taste that way.</p>
+      </div>
+      <div class="blog-principle">
+        <p>It's for the people who understand that small things, done right, make a real difference.</p>
+      </div>
+
+      <h3>Flavour Belongs Everywhere</h3>
+      <p>We believe that eating well isn't something that should happen only when you're sitting down, at home, with time to spare. It should follow you. It should be portable.</p>
+      <p>Salt On The Go is a small product with a simple purpose: make sure the gap between your kitchen and the rest of your life doesn't cost you flavour.</p>
+      <p>Carry it. Use it. Taste the difference.</p>
+      <p><strong>Salt On The Go</strong> — because your food deserves better, wherever you are.</p>
+
+      <p class="blog-footer">Salt On The Go — portable premium seasoning. Shop at [website link]</p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- INSTAGRAM -->
+  <section id="instagram">
+    <p class="section-label">Instagram</p>
+    <h2 class="section-title">Three posts, <em>three moments.</em></h2>
+
+    <div class="insta-grid">
+      <div class="insta-card">
+        <div class="insta-img">🧂</div>
+        <div class="insta-body">
+          <h3>Post 01 — Product Intro</h3>
+          <p>Your food called. It wants to taste like something. 🧂</p>
+          <p>Introducing <strong>Salt On The Go</strong> — premium seasoning that fits in your pocket, your bag, your carry-on, your life.</p>
+          <p>Because good flavour shouldn't stay home.</p>
+          <p>✔ Pocket-sized &nbsp; ✔ Carry-on safe &nbsp; ✔ Refillable &nbsp; ✔ Actually good salt</p>
+          <p>Link in bio to shop 👆</p>
+          <p class="hashtags">#SaltOnTheGo #PortableSeasoning #FoodLovers #CarryYourFlavour #TasteMatters #MealPrep #DeskLunch #FoodieEssentials #OnTheGoEating #PocketSalt</p>
+        </div>
+      </div>
+
+      <div class="insta-card">
+        <div class="insta-img">🍱</div>
+        <div class="insta-body">
+          <h3>Post 02 — Relatable / Lifestyle</h3>
+          <p>POV: you spent Sunday meal prepping, used the good salt, made something genuinely delicious.</p>
+          <p>POV Wednesday: it tastes like regret.</p>
+          <p>The difference? You left your seasoning at home.</p>
+          <p><strong>Salt On The Go</strong> comes with you. Every meal, every day, everywhere. 🧂</p>
+          <p>Because your Thursday lunch deserves the same respect as your Sunday dinner.</p>
+          <p>Shop via link in bio 👆</p>
+          <p class="hashtags">#SaltOnTheGo #MealPrepLife #FoodPrep #WorkLunch #DeskFood #OnTheGo #PortableFlavour #FoodTok #EatWell #SmallProductBigDifference</p>
+        </div>
+      </div>
+
+      <div class="insta-card">
+        <div class="insta-img">🌶️</div>
+        <div class="insta-body">
+          <h3>Post 03 — Community / Shareable</h3>
+          <p>This one's for the people who bring their own hot sauce to restaurants. 🌶️🧂</p>
+          <p>The ones who know which salt makes the difference. Who can't eat something without tasting what it's missing. Who have strong opinions about seasoning and zero apologies for it.</p>
+          <p>You're exactly who we made this for.</p>
+          <p><strong>Salt On The Go</strong> — carry your flavour.</p>
+          <p>Tag someone who gets it 👇</p>
+          <p class="hashtags">#SaltOnTheGo #FoodSnob #SeasoningEverything #FoodCommunity #CarryYourFlavour #HotSauceInMyBag #FoodIdentity #TasteEverywhere #FoodLoversUnite #SaltLife</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SEO -->
+  <section id="seo">
+    <p class="section-label">SEO Research</p>
+    <h2 class="section-title">Keywords that <em>find your people.</em></h2>
+
+    <div class="seo-grid">
+      <div class="seo-block">
+        <h3>Primary Keywords</h3>
+        <table>
+          <thead>
+            <tr><th>Keyword</th><th>Intent</th><th>Priority</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>portable salt</td><td>Commercial</td><td><span class="badge high">High</span></td></tr>
+            <tr><td>travel salt dispenser</td><td>Commercial</td><td><span class="badge high">High</span></td></tr>
+            <tr><td>salt on the go</td><td>Branded</td><td><span class="badge high">High</span></td></tr>
+            <tr><td>pocket seasoning</td><td>Commercial</td><td><span class="badge high">High</span></td></tr>
+            <tr><td>carry-on safe seasoning</td><td>Commercial</td><td><span class="badge high">High</span></td></tr>
+            <tr><td>mini salt container</td><td>Commercial</td><td><span class="badge medium">Medium</span></td></tr>
+            <tr><td>single serve salt</td><td>Commercial</td><td><span class="badge medium">Medium</span></td></tr>
+            <tr><td>on the go seasoning</td><td>Informational</td><td><span class="badge medium">Medium</span></td></tr>
+            <tr><td>travel spice kit</td><td>Commercial</td><td><span class="badge medium">Medium</span></td></tr>
+            <tr><td>finishing salt portable</td><td>Commercial</td><td><span class="badge medium">Medium</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="seo-block">
+        <h3>Long-Tail Keywords</h3>
+        <ul class="long-tail-list">
+          <li>portable salt for travel carry on</li>
+          <li>best seasoning to bring to work</li>
+          <li>pocket sized salt shaker refillable</li>
+          <li>how to season food when travelling</li>
+          <li>salt dispenser that fits in a bag</li>
+          <li>travel friendly seasoning container</li>
+          <li>meal prep seasoning on the go</li>
+          <li>best finishing salt for lunch box</li>
+          <li>compact salt and pepper for travel</li>
+          <li>salt sachet alternative reusable</li>
+        </ul>
+      </div>
+
+      <div class="seo-block" style="grid-column: 1 / -1;">
+        <h3>Hashtag Strategy</h3>
+        <div class="hashtag-tiers">
+          <div class="tier">
+            <p class="tier-label">Branded (always use)</p>
+            <div class="tier-tags">
+              <span class="tag">#SaltOnTheGo</span>
+              <span class="tag">#CarryYourFlavour</span>
+              <span class="tag">#TasteEverywhere</span>
+            </div>
+          </div>
+          <div class="tier">
+            <p class="tier-label">Product</p>
+            <div class="tier-tags">
+              <span class="tag">#PortableSeasoning</span>
+              <span class="tag">#PocketSalt</span>
+              <span class="tag">#TravelSalt</span>
+              <span class="tag">#MiniSalt</span>
+            </div>
+          </div>
+          <div class="tier">
+            <p class="tier-label">Lifestyle</p>
+            <div class="tier-tags">
+              <span class="tag">#MealPrepLife</span>
+              <span class="tag">#DeskLunch</span>
+              <span class="tag">#OnTheGoEating</span>
+              <span class="tag">#FoodieEssentials</span>
+            </div>
+          </div>
+          <div class="tier">
+            <p class="tier-label">Community</p>
+            <div class="tier-tags">
+              <span class="tag">#FoodLovers</span>
+              <span class="tag">#FoodSnob</span>
+              <span class="tag">#SeasoningEverything</span>
+              <span class="tag">#FoodTok</span>
+            </div>
+          </div>
+          <div class="tier">
+            <p class="tier-label">Discovery</p>
+            <div class="tier-tags">
+              <span class="tag">#SmallBusiness</span>
+              <span class="tag">#FoodPhotography</span>
+              <span class="tag">#FoodBlogger</span>
+              <span class="tag">#Foodstagram</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-tips">
+      <h3>5 SEO Actions to Take Now</h3>
+      <ol>
+        <li><strong>Homepage meta description:</strong> "Salt On The Go — premium portable seasoning that fits in your pocket. Carry-on safe, refillable, and made for people who care what their food tastes like. Shop now."</li>
+        <li><strong>Product page title tag:</strong> Portable Salt On The Go | Pocket-Sized Premium Seasoning | Salt On The Go</li>
+        <li><strong>Blog content to write next:</strong> "5 Reasons Your Meal Prep Tastes Better With the Right Salt" and "The Carry-On Approved Seasoning Kit Every Food Lover Needs" — both target long-tail keywords with almost no competition.</li>
+        <li><strong>Pinterest opportunity:</strong> Meal prep and travel content performs very well on Pinterest. Create SEO-optimised pins linking to your blog posts.</li>
+        <li><strong>LinkedIn articles:</strong> Republish blog posts as LinkedIn articles. LinkedIn ranks its own content in Google, giving you a second URL for the same piece.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <span>Salt On The Go &copy; 2025</span>
+    <span>Brand Marketing Pack — created for portfolio by <a href="https://amelzarrar.github.io/">Amel Zarrar</a></span>
+  </footer>
+
+</body>
+</html>
