@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>References — Amel Zarrar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F7F4EE;
+      --ink: #1A1916;
+      --ink-mid: #4A4845;
+      --ink-light: #8A8784;
+      --gold: #B8923A;
+      --rule: #E0DAD0;
+      --white: #FFFFFF;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 56px;
+    }
+    nav a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      color: var(--ink-mid);
+      text-transform: uppercase;
+    }
+    nav a:hover { color: var(--gold); }
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink) !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+    }
+
+    .hero {
+      padding: 5rem 3rem 4rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .eyebrow::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 48px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--ink-mid);
+      max-width: 580px;
+      line-height: 1.75;
+    }
+
+    .divider { border: none; border-top: 1px solid var(--rule); }
+
+    .content-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 3rem 6rem;
+    }
+
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2.5rem;
+    }
+
+    /* LETTER CARD */
+    .letter {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      margin-bottom: 3rem;
+    }
+    .letter:last-child { margin-bottom: 0; }
+
+    .letter-header {
+      padding: 2rem 2.5rem;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .letter-org {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .letter-title-role {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.2rem;
+    }
+
+    .letter-period {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--ink-light);
+    }
+
+    .letter-badge {
+      flex-shrink: 0;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 0.35rem 0.75rem;
+      border-radius: 2px;
+    }
+
+    .letter-body {
+      padding: 2.5rem;
+    }
+
+    .letter-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.55;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--rule);
+      font-style: italic;
+    }
+
+    .letter-tasks {
+      margin-bottom: 2rem;
+    }
+    .letter-tasks-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 0.75rem;
+    }
+    .task-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.5rem;
+    }
+    .task-list li {
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+      padding: 0.5rem 0.75rem;
+      background: var(--cream);
+      border-left: 2px solid var(--gold);
+    }
+
+    .letter-text {
+      font-size: 0.9rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .letter-text:last-child { margin-bottom: 0; }
+
+    .letter-highlights {
+      margin: 1.75rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .highlight {
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--rule);
+      border-top: 2px solid var(--gold);
+    }
+    .highlight-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .letter-signatories {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .signatory-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .signatory-role {
+      font-size: 0.78rem;
+      color: var(--ink-light);
+      margin-top: 0.1rem;
+    }
+    .letter-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--ink-light);
+      margin-top: 1rem;
+    }
+
+    footer {
+      padding: 3rem;
+      text-align: center;
+      border-top: 1px solid var(--rule);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-light);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1.25rem; }
+      .hero, .content-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .letter-header { flex-direction: column; }
+      .letter-body { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-name">Amel Zarrar</a>
+    <a href="index.html">← Back to Portfolio</a>
+  </nav>
+
+  <div class="hero">
+    <div class="eyebrow">References</div>
+    <h1>Letters of<br /><em>Reference</em></h1>
+    <p class="hero-desc">
+      Professional reference letters from employers attesting to the quality of work, character, and contributions during tenures in UX writing and content design roles.
+    </p>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="content-wrap">
+    <section>
+      <div class="section-label">Reference 01 of 02</div>
+
+      <!-- LETTER 1: WSA / Sivantos -->
+      <div class="letter">
+        <div class="letter-header">
+          <div>
+            <div class="letter-org">WS Audiology (Sivantos GmbH)</div>
+            <div class="letter-title-role">Working Student — Global Marketing</div>
+            <div class="letter-period">15 June 2024 – 31 May 2026 · Erlangen, Germany</div>
+          </div>
+          <div class="letter-badge">Verified Reference</div>
+        </div>
+        <div class="letter-body">
+
+          <p class="letter-intro">"We were always very satisfied with the performance of Ms Zarrar Mehmood."</p>
+
+          <div class="letter-tasks">
+            <div class="letter-tasks-label">Responsibilities Covered</div>
+            <ul class="task-list">
+              <li>Research current UX writing trends</li>
+              <li>Reviews and proofreading</li>
+              <li>Writing of UI copy and user guidelines</li>
+              <li>Support of ongoing tasks</li>
+            </ul>
+          </div>
+
+          <p class="letter-text">
+            WS Audiology was founded in 2019 by the merger of Sivantos and Widex and combines more than 140 years of experience. Using innovative technologies, the company helps people with hearing loss to hear the sounds that make life wonderful. WSA employs more than 12,000 people worldwide, is active in over 130 markets, and has annual sales of more than 2.5 billion euros. Its brands include Signia, Widex, Rexton and Audio Service.
+          </p>
+
+          <div class="letter-highlights">
+            <div class="highlight">
+              <div class="highlight-quote">"Wide-ranging specialist knowledge, always applied confidently and in a target-oriented manner in practice."</div>
+            </div>
+            <div class="highlight">
+              <div class="highlight-quote">"Precise analytical ability — always able to understand complex situations immediately and find good solutions."</div>
+            </div>
+            <div class="highlight">
+              <div class="highlight-quote">"Completed her tasks completely independently, extremely carefully and according to a well thought-out plan."</div>
+            </div>
+            <div class="highlight">
+              <div class="highlight-quote">"Always very reliable. Impeccable work results, even for difficult problems, after a short period of familiarisation."</div>
+            </div>
+          </div>
+
+          <p class="letter-text">
+            Ms Zarrar Mehmood was open to new experiences at all times and always willing to learn new things. She always completed all tasks well, even under difficult working conditions and under great time pressure — working calmly, thoughtfully, and extremely precisely at all times.
+          </p>
+          <p class="letter-text">
+            She was respected by everyone for her friendly and well-balanced demeanour. Her personal conduct towards line managers, colleagues and clients was always impeccable. The collaboration was very pleasant and gratifying. She is considered well-suited for her chosen profession.
+          </p>
+
+          <div class="letter-signatories">
+            <div>
+              <div class="signatory-name">Marcel Schubert</div>
+              <div class="signatory-role">Head HR Germany, Sivantos GmbH</div>
+            </div>
+            <div>
+              <div class="signatory-name">Ralf Hartung</div>
+              <div class="signatory-role">Head of HR Services Germany, Sivantos GmbH</div>
+            </div>
+          </div>
+          <div class="letter-date">Issued: 31 May 2026 · Erlangen</div>
+
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top: 3rem;">Reference 02 of 02</div>
+
+      <!-- LETTER 2: Mikolaj Lewicki / DCU -->
+      <div class="letter">
+        <div class="letter-header">
+          <div>
+            <div class="letter-org">WS Audiology (Sivantos GmbH)</div>
+            <div class="letter-title-role">Working Student — Quality Department, DCU</div>
+            <div class="letter-period">From 15 June 2024 · Erlangen, Germany</div>
+          </div>
+          <div class="letter-badge">Verified Reference</div>
+        </div>
+        <div class="letter-body">
+
+          <p class="letter-intro">"Amel has my full recommendation."</p>
+
+          <div class="letter-tasks">
+            <div class="letter-tasks-label">Responsibilities Covered</div>
+            <ul class="task-list">
+              <li>Supporting Global DCU in complaint processing and information intake</li>
+              <li>Supporting DCU Specialists and Regional Team Leaders in complaint investigations</li>
+              <li>Cross-cultural stakeholder alignment (Singapore, Philippines, Poland, Denmark)</li>
+              <li>Improving internal complaint processes and department website maintenance</li>
+              <li>Co-supporting complaint device scrapping process in Erlangen</li>
+              <li>Global Quality Check Project on CRM process End</li>
+            </ul>
+          </div>
+
+          <div class="letter-highlights">
+            <div class="highlight">
+              <div class="highlight-quote">"Always worked independently and pro-actively — reliable and dedicated with visible constant motivation growth over time."</div>
+            </div>
+            <div class="highlight">
+              <div class="highlight-quote">"Multitasks effectively and can handle a high-volume workload. Very structured, detail oriented, and creative when finding solutions for complex tasks."</div>
+            </div>
+            <div class="highlight">
+              <div class="highlight-quote">"Quickly learned software systems and processes that were unfamiliar when she first started at WSA."</div>
+            </div>
+            <div class="highlight">
+              <div class="highlight-quote">"Impressed with Amel's enthusiasm, communication skills and professional demeanor since her employment at WSA."</div>
+            </div>
+          </div>
+
+          <p class="letter-text">
+            Written by the DCU Team Lead for EMEA & Americas Region, this recommendation attests to Amel's independent working style, cross-functional collaboration across an international environment, and consistent performance under a demanding, high-volume quality assurance workload.
+          </p>
+
+          <div class="letter-signatories">
+            <div>
+              <div class="signatory-name">Mikolaj Lewicki</div>
+              <div class="signatory-role">DCU Team Lead EMEA & Americas Region<br/>Post Market Quality Department, Sivantos GmbH</div>
+            </div>
+          </div>
+          <div class="letter-date">Issued: February 18, 2025 · Erlangen</div>
+
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <footer>
+    <a href="index.html">← Back to Portfolio</a> &nbsp;·&nbsp; Amel Zarrar &nbsp;·&nbsp; UX Content Designer
+  </footer>
+
+</body>
+</html>

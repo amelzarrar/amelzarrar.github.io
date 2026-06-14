@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing Guidelines: Medical Products — Amel Zarrar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F7F4EE;
+      --ink: #1A1916;
+      --ink-mid: #4A4845;
+      --ink-light: #8A8784;
+      --gold: #B8923A;
+      --gold-light: #D4AB5A;
+      --rule: #E0DAD0;
+      --white: #FFFFFF;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 56px;
+    }
+    nav a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      color: var(--ink-mid);
+      text-transform: uppercase;
+    }
+    nav a:hover { color: var(--gold); }
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink) !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+    }
+
+    .hero {
+      padding: 5rem 3rem 4rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .eyebrow::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 48px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--ink-mid);
+      max-width: 580px;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    .regulatory-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 2px;
+      padding: 0.4rem 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid var(--rule);
+      color: var(--ink-mid);
+      border-radius: 2px;
+    }
+
+    .divider { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+    .content-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    h2 em { font-style: italic; }
+
+    p {
+      font-size: 0.97rem;
+      color: var(--ink-mid);
+      margin-bottom: 1rem;
+    }
+
+    /* PRINCIPLE CARDS — medical: stacked format with emphasis on safety */
+    .guidelines-grid {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .guideline-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--gold);
+      padding: 1.75rem 2rem;
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 0 1.25rem;
+    }
+
+    .guideline-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      padding-top: 0.2rem;
+      letter-spacing: 0.04em;
+    }
+
+    .guideline-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .guideline-desc {
+      font-size: 0.875rem;
+      color: var(--ink-mid);
+      margin-bottom: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .example-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .example {
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .example-correct {
+      background: #F0F7F0;
+      border-left: 2px solid #6BAF6B;
+      color: #2D5A2D;
+    }
+
+    .example-wrong {
+      background: #FBF3F0;
+      border-left: 2px solid #C97B5A;
+      color: #7A3820;
+    }
+
+    .example-label {
+      display: block;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 0.35rem;
+    }
+
+    /* SAFETY CALLOUT */
+    .safety-callout {
+      background: #FFF9EE;
+      border: 1px solid var(--gold);
+      border-left: 4px solid var(--gold);
+      padding: 1.5rem 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .safety-callout p {
+      font-size: 0.9rem;
+      color: var(--ink);
+      margin: 0;
+    }
+    .safety-callout strong {
+      font-weight: 500;
+      display: block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    /* AVOID */
+    .avoid-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .avoid-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      padding: 1.5rem;
+    }
+
+    .avoid-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--ink-light);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .avoid-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .avoid-desc {
+      font-size: 0.82rem;
+      color: var(--ink-mid);
+      line-height: 1.6;
+    }
+
+    .avoid-examples {
+      margin-top: 0.75rem;
+      font-size: 0.78rem;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .avoid-wrong { color: #9B4520; }
+    .avoid-right { color: #3A7A3A; }
+    .avoid-examples span { display: block; margin-bottom: 0.3rem; }
+
+    /* HIERARCHY EXAMPLE */
+    .hierarchy-example {
+      margin-top: 2rem;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      padding: 2rem;
+    }
+    .hierarchy-example h3 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 1.5rem;
+    }
+    .hierarchy-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+    }
+    .hierarchy-row:last-child { border-bottom: none; }
+    .hierarchy-type {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding-top: 0.1rem;
+    }
+    .hierarchy-copy {
+      font-size: 0.875rem;
+      color: var(--ink);
+    }
+
+    /* TABLE */
+    .ref-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      font-size: 0.875rem;
+    }
+    .ref-table thead tr { border-bottom: 2px solid var(--ink); }
+    .ref-table th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+    .ref-table tbody tr { border-bottom: 1px solid var(--rule); }
+    .ref-table tbody tr:last-child { border-bottom: none; }
+    .ref-table td {
+      padding: 1rem 1rem;
+      vertical-align: top;
+      color: var(--ink-mid);
+      line-height: 1.55;
+    }
+    .ref-table td:first-child {
+      font-weight: 500;
+      color: var(--ink);
+      white-space: nowrap;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+    }
+    .ref-correct { color: #2D5A2D; font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; }
+    .ref-wrong { color: #7A3820; font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; }
+
+    footer {
+      padding: 3rem;
+      text-align: center;
+      border-top: 1px solid var(--rule);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-light);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1.25rem; }
+      .hero, .content-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .example-pair { grid-template-columns: 1fr; }
+      .guideline-card { grid-template-columns: 1fr; }
+      .guideline-num { margin-bottom: 0.25rem; }
+      .hierarchy-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-name">Amel Zarrar</a>
+    <a href="index.html">← Back to Portfolio</a>
+  </nav>
+
+  <div class="hero">
+    <div class="eyebrow">Writing Guidelines</div>
+    <h1>Medical<br /><em>Product Writing</em></h1>
+    <p class="hero-desc">
+      Internal guidelines developed for a global hearing care brand to align content across regulated medical product touchpoints — interface copy, user instructions, and support documentation. Written in accordance with FDA and EMA standards.
+    </p>
+    <div class="regulatory-note">⚠ FDA &amp; EMA Aligned</div>
+    <div class="tag-row">
+      <span class="tag">Medical UX Writing</span>
+      <span class="tag">Regulatory Content</span>
+      <span class="tag">Healthcare Tech</span>
+      <span class="tag">IFU Writing</span>
+      <span class="tag">Content Guidelines</span>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="content-wrap">
+
+    <section>
+      <div class="section-label">Context</div>
+      <h2>When words carry <em>clinical weight</em></h2>
+      <div class="safety-callout">
+        <strong>Patient Safety Notice</strong>
+        <p>Writing and UX design for medical products can directly impact clinical outcomes. One mistake in the content or design can prove to be fatal. These guidelines ensure every word supports safe and correct use of the product — written as if the content could be used under time pressure, by non-native speakers, in stressful or clinical environments.</p>
+      </div>
+      <p>Content for medical products must ensure clear information hierarchy, error prevention mechanisms, and intuitive data visualisation to minimise risk in healthcare product design.</p>
+    </section>
+
+    <section>
+      <div class="section-label">Core Principles</div>
+      <h2>What is <em>important</em></h2>
+
+      <div class="guidelines-grid">
+
+        <div class="guideline-card">
+          <div class="guideline-num">01</div>
+          <div class="guideline-body">
+            <div class="guideline-title">Patient safety and clinical accuracy come first</div>
+            <div class="guideline-desc">Every word must support safe and correct use of the product. Prefer explicit instructions over implied meaning.</div>
+            <div class="example-pair">
+              <div class="example example-correct"><span class="example-label">Correct</span>"Press Start to begin the test."</div>
+              <div class="example example-wrong"><span class="example-label">Avoid</span>"You're good to go."</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-num">02</div>
+          <div class="guideline-body">
+            <div class="guideline-title">Clarity over brevity</div>
+            <div class="guideline-desc">Short is good — but only if meaning stays unambiguous. Use one instruction per sentence. Avoid collapsing steps.</div>
+            <div class="example-pair">
+              <div class="example example-correct"><span class="example-label">Correct</span>"Clean the probe. Then attach it to the device."</div>
+              <div class="example example-wrong"><span class="example-label">Avoid</span>"Prepare the probe."</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-num">03</div>
+          <div class="guideline-body">
+            <div class="guideline-title">Consistent, standard medical terminology</div>
+            <div class="guideline-desc">Use clinically accepted terms, not internal jargon. Use the same term everywhere — UI, help text, IFU. If multiple terms exist, choose one and lock it.</div>
+            <div class="example-pair">
+              <div class="example example-correct"><span class="example-label">Correct</span>"Tinnitus" (used everywhere)</div>
+              <div class="example example-wrong"><span class="example-label">Avoid</span>"Ringing", "ear noise", "sound issues" (mixed usage)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-num">04</div>
+          <div class="guideline-body">
+            <div class="guideline-title">Clear intent and instruction hierarchy</div>
+            <div class="guideline-desc">Structure content so users can instantly understand: what is happening, what they need to do, and what happens next.</div>
+            <div class="hierarchy-example">
+              <h3>Error flow example</h3>
+              <div class="hierarchy-row">
+                <div class="hierarchy-type">Error</div>
+                <div class="hierarchy-copy">Microphone not detected</div>
+              </div>
+              <div class="hierarchy-row">
+                <div class="hierarchy-type">Action</div>
+                <div class="hierarchy-copy">Check microphone connection</div>
+              </div>
+              <div class="hierarchy-row">
+                <div class="hierarchy-type">Result</div>
+                <div class="hierarchy-copy">Test cannot continue without a microphone</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-num">05</div>
+          <div class="guideline-body">
+            <div class="guideline-title">Neutral, professional, instructional tone</div>
+            <div class="guideline-desc">Write like a medical professional, not a marketer. Calm, factual, respectful. No persuasion, no exaggeration.</div>
+            <div class="example-pair">
+              <div class="example example-correct"><span class="example-label">Correct</span>"This feature records hearing test results."</div>
+              <div class="example example-wrong"><span class="example-label">Avoid</span>"This powerful feature gives you amazing insights!"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-num">06</div>
+          <div class="guideline-body">
+            <div class="guideline-title">Regulatory alignment</div>
+            <div class="guideline-desc">Content must align with approved labelling, IFU, intended use, and risk classifications. Do not introduce new claims, benefits, or promises outside approved scope.</div>
+            <div class="example-pair">
+              <div class="example example-correct"><span class="example-label">Correct</span>"Designed to support hearing assessments."</div>
+              <div class="example example-wrong"><span class="example-label">Avoid</span>"Improves hearing outcomes."</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-num">07</div>
+          <div class="guideline-body">
+            <div class="guideline-title">Accessibility and health literacy</div>
+            <div class="guideline-desc">Assume varied literacy and cognitive load. Prefer common sentence structure, active voice, and concrete verbs. Avoid medical shorthand unless the audience is strictly clinical.</div>
+            <div class="example-pair">
+              <div class="example example-correct"><span class="example-label">Correct</span>"Remove the hearing aid before testing."</div>
+              <div class="example example-wrong"><span class="example-label">Avoid</span>"Device removal required prior to assessment."</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Anti-Patterns</div>
+      <h2>What to <em>avoid</em></h2>
+      <p>Writing failures that can introduce clinical risk, regulatory non-compliance, or user confusion in medical contexts.</p>
+
+      <div class="avoid-grid">
+
+        <div class="avoid-card">
+          <span class="avoid-number">01</span>
+          <div class="avoid-title">Ambiguity</div>
+          <div class="avoid-desc">Phrases like "as needed", "if necessary", or "when appropriate" leave critical decisions to chance.</div>
+          <div class="avoid-examples">
+            <span class="avoid-wrong">✗ "Adjust volume if needed."</span>
+            <span class="avoid-right">✓ "Adjust the volume until the tone is clearly audible."</span>
+          </div>
+        </div>
+
+        <div class="avoid-card">
+          <span class="avoid-number">02</span>
+          <div class="avoid-title">Idioms, metaphors, and casual language</div>
+          <div class="avoid-desc">No idioms, no humour, no conversational filler. These create localization errors and undermine clinical authority.</div>
+          <div class="avoid-examples">
+            <span class="avoid-wrong">✗ "Let's get started!"</span>
+            <span class="avoid-right">✓ "Start the setup."</span>
+          </div>
+        </div>
+
+        <div class="avoid-card">
+          <span class="avoid-number">03</span>
+          <div class="avoid-title">Marketing or emotional language</div>
+          <div class="avoid-desc">Words like "best", "powerful", "life-changing", "seamless" have no place in medical product copy.</div>
+          <div class="avoid-examples">
+            <span class="avoid-wrong">✗ "A revolutionary hearing experience."</span>
+            <span class="avoid-right">✓ "A hearing assessment tool."</span>
+          </div>
+        </div>
+
+        <div class="avoid-card">
+          <span class="avoid-number">04</span>
+          <div class="avoid-title">Implicit medical advice</div>
+          <div class="avoid-desc">Do not suggest diagnosis or treatment unless explicitly approved in the product's labelling and regulatory scope.</div>
+          <div class="avoid-examples">
+            <span class="avoid-wrong">✗ "This result indicates hearing loss."</span>
+            <span class="avoid-right">✓ "This result may require review by a hearing care professional."</span>
+          </div>
+        </div>
+
+        <div class="avoid-card">
+          <span class="avoid-number">05</span>
+          <div class="avoid-title">Vague error and system messages</div>
+          <div class="avoid-desc">Never blame the user. Always explain impact and next step. A vague error in a medical context can cause a patient to take the wrong action.</div>
+          <div class="avoid-examples">
+            <span class="avoid-wrong">✗ "Something went wrong."</span>
+            <span class="avoid-right">✓ "The test could not be completed. Restart the device and try again."</span>
+          </div>
+        </div>
+
+        <div class="avoid-card">
+          <span class="avoid-number">06</span>
+          <div class="avoid-title">Overloading one message</div>
+          <div class="avoid-desc">Avoid combining status, instruction, and explanation in one sentence. Each element should do one job only.</div>
+          <div class="avoid-examples">
+            <span class="avoid-wrong">✗ Compound messages mixing state, instruction and detail.</span>
+            <span class="avoid-right">✓ Separate status, action, and result clearly.</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Quick Reference</div>
+      <h2>Copy <em>examples</em></h2>
+
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Avoid</th>
+            <th>Correct</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Instruction clarity</td>
+            <td><span class="ref-wrong">"Position the device correctly."</span></td>
+            <td><span class="ref-correct">"Place the device on a flat surface with the screen facing up."</span></td>
+          </tr>
+          <tr>
+            <td>Error messaging</td>
+            <td><span class="ref-wrong">"Invalid input."</span></td>
+            <td><span class="ref-correct">"The entered date is not valid. Use the format DD/MM/YYYY."</span></td>
+          </tr>
+          <tr>
+            <td>Tone</td>
+            <td><span class="ref-wrong">"Great job! You're all set!"</span></td>
+            <td><span class="ref-correct">"Setup is complete."</span></td>
+          </tr>
+          <tr>
+            <td>Safety language</td>
+            <td><span class="ref-wrong">"Safe for all users."</span></td>
+            <td><span class="ref-correct">"Use only as described in the Instructions for Use."</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+
+  <footer>
+    <a href="index.html">← Back to Portfolio</a> &nbsp;·&nbsp; Amel Zarrar &nbsp;·&nbsp; UX Content Designer
+  </footer>
+
+</body>
+</html>

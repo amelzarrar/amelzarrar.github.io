@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing Guidelines: Conversational Chatbots — Amel Zarrar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F7F4EE;
+      --ink: #1A1916;
+      --ink-mid: #4A4845;
+      --ink-light: #8A8784;
+      --gold: #B8923A;
+      --gold-light: #D4AB5A;
+      --rule: #E0DAD0;
+      --white: #FFFFFF;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 56px;
+    }
+    nav a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      color: var(--ink-mid);
+      text-transform: uppercase;
+    }
+    nav a:hover { color: var(--gold); }
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink) !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 5rem 3rem 4rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .eyebrow::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 48px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--ink-mid);
+      max-width: 580px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid var(--rule);
+      color: var(--ink-mid);
+      border-radius: 2px;
+    }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0;
+    }
+
+    /* CONTENT SECTIONS */
+    .content-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    h2 em { font-style: italic; }
+
+    p {
+      font-size: 0.97rem;
+      color: var(--ink-mid);
+      margin-bottom: 1rem;
+    }
+
+    /* GUIDELINES TABLE */
+    .guidelines-grid {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .guideline-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--gold);
+      padding: 1.75rem 2rem;
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 0 1.25rem;
+    }
+
+    .guideline-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      padding-top: 0.2rem;
+      letter-spacing: 0.04em;
+    }
+
+    .guideline-body {}
+
+    .guideline-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .guideline-desc {
+      font-size: 0.875rem;
+      color: var(--ink-mid);
+      margin-bottom: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .example-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .example {
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .example-correct {
+      background: #F0F7F0;
+      border-left: 2px solid #6BAF6B;
+      color: #2D5A2D;
+    }
+
+    .example-wrong {
+      background: #FBF3F0;
+      border-left: 2px solid #C97B5A;
+      color: #7A3820;
+    }
+
+    .example-label {
+      display: block;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 0.35rem;
+    }
+
+    /* AVOID SECTION */
+    .avoid-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .avoid-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      padding: 1.5rem;
+    }
+
+    .avoid-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--ink-light);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .avoid-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .avoid-desc {
+      font-size: 0.82rem;
+      color: var(--ink-mid);
+      line-height: 1.6;
+    }
+
+    .avoid-examples {
+      margin-top: 0.75rem;
+      font-size: 0.78rem;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .avoid-wrong { color: #9B4520; }
+    .avoid-right { color: #3A7A3A; }
+    .avoid-examples span { display: block; margin-bottom: 0.3rem; }
+
+    /* QUICK REFERENCE */
+    .ref-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      font-size: 0.875rem;
+    }
+    .ref-table thead tr {
+      border-bottom: 2px solid var(--ink);
+    }
+    .ref-table th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+    .ref-table tbody tr {
+      border-bottom: 1px solid var(--rule);
+    }
+    .ref-table tbody tr:last-child { border-bottom: none; }
+    .ref-table td {
+      padding: 1rem 1rem;
+      vertical-align: top;
+      color: var(--ink-mid);
+      line-height: 1.55;
+    }
+    .ref-table td:first-child {
+      font-weight: 500;
+      color: var(--ink);
+      white-space: nowrap;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+    }
+    .ref-correct { color: #2D5A2D; font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; }
+    .ref-wrong { color: #7A3820; font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem;
+      text-align: center;
+      border-top: 1px solid var(--rule);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-light);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1.25rem; }
+      .hero, .content-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .example-pair { grid-template-columns: 1fr; }
+      .guideline-card { grid-template-columns: 1fr; }
+      .guideline-num { margin-bottom: 0.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-name">Amel Zarrar</a>
+    <a href="index.html">← Back to Portfolio</a>
+  </nav>
+
+  <div class="hero">
+    <div class="eyebrow">Writing Guidelines</div>
+    <h1>Conversational<br /><em>Chatbot Writing</em></h1>
+    <p class="hero-desc">
+      Internal guidelines authored at a global hearing care brand to standardise chatbot copy across digital products. These principles cover tone, message structure, error handling, and interaction patterns for regulated, support-focused contexts.
+    </p>
+    <div class="tag-row">
+      <span class="tag">UX Writing</span>
+      <span class="tag">Conversation Design</span>
+      <span class="tag">Content Guidelines</span>
+      <span class="tag">AI Assistant</span>
+      <span class="tag">Healthcare Tech</span>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="content-wrap">
+
+    <section>
+      <div class="section-label">Core Principles</div>
+      <h2>What is <em>important</em></h2>
+      <p>Seven principles that every chatbot message should be measured against — from task clarity and tone to graceful failure handling.</p>
+
+      <div class="guidelines-grid">
+
+        <div class="guideline-card">
+          <div class="guideline-num">01</div>
+          <div class="guideline-body">
+            <div class="guideline-title">Task-first communication</div>
+            <div class="guideline-desc">Every message should help the user move forward. Make it immediately clear: what the bot can do, and what the user should do next.</div>
+            <div class="example-pair">
+              <div class="example example-correct"><span class="example-label">Correct</span>"Please choose one of the options below."</div>
+              <div class="example example-wrong"><span class="example-label">Avoid</span>"What would you like to do today?"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-num">02</div>
+          <div class="guideline-body">
+            <div class="guideline-title">Clear, concise messages</div>
+            <div class="guideline-desc">Keep messages short and focused. One instruction or question per turn. Use simple sentence structures.</div>
+            <div class="example-pair">
+              <div class="example example-correct"><span class="example-label">Correct</span>"Enter your email address."</div>
+              <div class="example example-wrong"><span class="example-label">Avoid</span>"Could you please provide the email address you used when signing up?"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-num">03</div>
+          <div class="guideline-body">
+            <div class="guideline-title">Predictable conversation patterns</div>
+            <div class="guideline-desc">Use consistent wording for confirmations, errors, and retries. Reuse patterns so users learn how the bot works.</div>
+            <div class="example-pair">
+              <div class="example example-correct"><span class="example-label">Correct</span>Always: "Try again"</div>
+              <div class="example example-wrong"><span class="example-label">Avoid</span>Mixing: "Retry", "Give it another shot", "Please reattempt"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-num">04</div>
+          <div class="guideline-body">
+            <div class="guideline-title">Turn-based interaction</div>
+            <div class="guideline-desc">Ask for one input at a time. Wait for the user before continuing. Break complex flows into steps.</div>
+            <div class="example-pair">
+              <div class="example example-correct"><span class="example-label">Correct</span>"Enter your date of birth."<br/>→ user responds<br/>"Thank you. Now enter your postal code."</div>
+              <div class="example example-wrong"><span class="example-label">Avoid</span>Asking for multiple pieces of data in a single message.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-num">05</div>
+          <div class="guideline-body">
+            <div class="guideline-title">Clear system status and transparency</div>
+            <div class="guideline-desc">Tell users what the bot is doing. Set realistic expectations rather than leaving them waiting in silence.</div>
+            <div class="example-pair">
+              <div class="example example-correct"><span class="example-label">Correct</span>"I'm checking your request. This may take a few seconds."</div>
+              <div class="example example-wrong"><span class="example-label">Avoid</span>"Processing…"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-num">06</div>
+          <div class="guideline-body">
+            <div class="guideline-title">Calm, neutral tone</div>
+            <div class="guideline-desc">Friendly but professional. Supportive, not playful or emotional. Especially important in support or regulated contexts.</div>
+            <div class="example-pair">
+              <div class="example example-correct"><span class="example-label">Correct</span>"I couldn't find that information."</div>
+              <div class="example example-wrong"><span class="example-label">Avoid</span>"Oops! That didn't work 😅"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-num">07</div>
+          <div class="guideline-body">
+            <div class="guideline-title">Graceful error handling</div>
+            <div class="guideline-desc">Always explain what went wrong and what the user can do next. Never leave someone stuck without a path forward.</div>
+            <div class="example-pair">
+              <div class="example example-correct"><span class="example-label">Correct</span>"I didn't understand that. Please choose one of the options below."</div>
+              <div class="example example-wrong"><span class="example-label">Avoid</span>Generic failure messages with no next step.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Anti-Patterns</div>
+      <h2>What to <em>avoid</em></h2>
+      <p>Common mistakes that erode trust, confuse users, or create friction in conversational flows.</p>
+
+      <div class="avoid-grid">
+
+        <div class="avoid-card">
+          <span class="avoid-number">01</span>
+          <div class="avoid-title">Long or dense messages</div>
+          <div class="avoid-desc">No paragraphs, no information dumps. Break content into steps users can act on one at a time.</div>
+          <div class="avoid-examples">
+            <span class="avoid-wrong">✗ "Here's everything you need to know about your account…"</span>
+            <span class="avoid-right">✓ Break into steps</span>
+          </div>
+        </div>
+
+        <div class="avoid-card">
+          <span class="avoid-number">02</span>
+          <div class="avoid-title">Vague or generic responses</div>
+          <div class="avoid-desc">Avoid messages that don't help users recover. Every error should name the problem and the solution.</div>
+          <div class="avoid-examples">
+            <span class="avoid-wrong">✗ "Something went wrong."</span>
+            <span class="avoid-right">✓ "The file format is not supported. Upload a PDF or PNG."</span>
+          </div>
+        </div>
+
+        <div class="avoid-card">
+          <span class="avoid-number">03</span>
+          <div class="avoid-title">Overpersonalisation or strong personality</div>
+          <div class="avoid-desc">Avoid jokes, emojis (unless intentionally designed), and slang. The bot's job is to help, not entertain.</div>
+          <div class="avoid-examples">
+            <span class="avoid-wrong">✗ "Heyyyy! Let's fix this together 😄"</span>
+            <span class="avoid-right">✓ "Let's fix this."</span>
+          </div>
+        </div>
+
+        <div class="avoid-card">
+          <span class="avoid-number">04</span>
+          <div class="avoid-title">Asking multiple questions at once</div>
+          <div class="avoid-desc">Each turn should request exactly one piece of information. Compound questions create cognitive overload.</div>
+          <div class="avoid-examples">
+            <span class="avoid-wrong">✗ "Enter your name, email, and phone number."</span>
+            <span class="avoid-right">✓ Ask sequentially</span>
+          </div>
+        </div>
+
+        <div class="avoid-card">
+          <span class="avoid-number">05</span>
+          <div class="avoid-title">Blaming the user</div>
+          <div class="avoid-desc">Never imply user fault. Frame all errors as system observations, not user mistakes.</div>
+          <div class="avoid-examples">
+            <span class="avoid-wrong">✗ "You entered an invalid value."</span>
+            <span class="avoid-right">✓ "The value entered is not valid."</span>
+          </div>
+        </div>
+
+        <div class="avoid-card">
+          <span class="avoid-number">06</span>
+          <div class="avoid-title">Pretending to be human</div>
+          <div class="avoid-desc">Be transparent that the user is interacting with a system. Trust erodes quickly when the illusion breaks.</div>
+          <div class="avoid-examples">
+            <span class="avoid-wrong">✗ "I'll personally take care of this."</span>
+            <span class="avoid-right">✓ "I can help guide you through this."</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Quick Reference</div>
+      <h2>Copy <em>examples</em></h2>
+      <p>Side-by-side comparisons across common chatbot interaction types.</p>
+
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Avoid</th>
+            <th>Correct</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Greeting</td>
+            <td><span class="ref-wrong">"Hey there! 😊 What's up?"</span></td>
+            <td><span class="ref-correct">"Hello. How can I help you?"</span></td>
+          </tr>
+          <tr>
+            <td>Instruction</td>
+            <td><span class="ref-wrong">"Go ahead and share your details."</span></td>
+            <td><span class="ref-correct">"Enter your email address."</span></td>
+          </tr>
+          <tr>
+            <td>Error message</td>
+            <td><span class="ref-wrong">"That didn't work."</span></td>
+            <td><span class="ref-correct">"The password must contain at least 8 characters."</span></td>
+          </tr>
+          <tr>
+            <td>Multi-step flow</td>
+            <td><span class="ref-wrong">"Provide your name, email, and password."</span></td>
+            <td><span class="ref-correct">"Enter your name." → "Enter your email address." → "Create a password."</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+
+  <footer>
+    <a href="index.html">← Back to Portfolio</a> &nbsp;·&nbsp; Amel Zarrar &nbsp;·&nbsp; UX Content Designer
+  </footer>
+
+</body>
+</html>

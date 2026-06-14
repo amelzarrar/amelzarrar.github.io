@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkedIn Post Writing — Amel Zarrar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F7F4EE;
+      --ink: #1A1916;
+      --ink-mid: #4A4845;
+      --ink-light: #8A8784;
+      --gold: #B8923A;
+      --rule: #E0DAD0;
+      --white: #FFFFFF;
+      --li-blue: #0A66C2;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 56px;
+    }
+    nav a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      color: var(--ink-mid);
+      text-transform: uppercase;
+    }
+    nav a:hover { color: var(--gold); }
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink) !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+    }
+
+    .hero {
+      padding: 5rem 3rem 4rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .eyebrow::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 48px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--ink-mid);
+      max-width: 580px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid var(--rule);
+      color: var(--ink-mid);
+      border-radius: 2px;
+    }
+
+    .divider { border: none; border-top: 1px solid var(--rule); }
+
+    .content-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    h2 em { font-style: italic; }
+
+    p { font-size: 0.97rem; color: var(--ink-mid); margin-bottom: 1rem; }
+
+    /* BEFORE / AFTER LAYOUT */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+      align-items: start;
+    }
+
+    .compare-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .compare-label.new { color: var(--gold); }
+
+    /* LINKEDIN CARD MOCKUP */
+    .li-card {
+      background: var(--white);
+      border: 1px solid #E0E0E0;
+      border-radius: 8px;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .li-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1rem 0.5rem;
+    }
+
+    .li-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .li-meta {}
+    .li-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #000;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .li-sub {
+      font-size: 0.72rem;
+      color: #666;
+    }
+    .li-time {
+      font-size: 0.7rem;
+      color: #888;
+    }
+
+    .li-body {
+      padding: 0.75rem 1rem;
+      font-size: 0.82rem;
+      color: #1a1a1a;
+      line-height: 1.5;
+    }
+    .li-body p { color: #1a1a1a; margin-bottom: 0.5rem; font-size: 0.82rem; font-family: inherit; }
+
+    .li-cta {
+      color: var(--li-blue);
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+
+    .li-banner {
+      margin: 0.5rem 1rem 0;
+      background: #1B2B4B;
+      padding: 1rem;
+      border-radius: 4px;
+    }
+    .li-banner-headline {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 0.25rem;
+    }
+    .li-brand {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .li-stats {
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+      color: #666;
+      border-top: 1px solid #E0E0E0;
+      margin-top: 0.5rem;
+    }
+
+    .li-actions {
+      display: flex;
+      border-top: 1px solid #E0E0E0;
+    }
+    .li-action {
+      flex: 1;
+      text-align: center;
+      padding: 0.6rem 0;
+      font-size: 0.75rem;
+      color: #666;
+    }
+
+    /* ORIGINAL POST NOTE */
+    .original-note {
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      padding: 1.25rem;
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+      line-height: 1.65;
+    }
+    .original-note em { font-style: italic; }
+
+    /* WRITING APPROACH */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .approach-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-top: 2px solid var(--gold);
+      padding: 1.25rem 1.5rem;
+    }
+
+    .approach-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .approach-desc {
+      font-size: 0.8rem;
+      color: var(--ink-mid);
+      line-height: 1.6;
+    }
+
+    /* POST COPY */
+    .post-copy-block {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--gold);
+      padding: 2rem 2.25rem;
+      margin-top: 2rem;
+    }
+    .post-copy-block p {
+      color: var(--ink);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .post-copy-block p:last-child { margin-bottom: 0; }
+    .post-copy-block .cta-line {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--li-blue);
+    }
+
+    footer {
+      padding: 3rem;
+      text-align: center;
+      border-top: 1px solid var(--rule);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-light);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1.25rem; }
+      .hero, .content-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-name">Amel Zarrar</a>
+    <a href="index.html">← Back to Portfolio</a>
+  </nav>
+
+  <div class="hero">
+    <div class="eyebrow">Content Writing</div>
+    <h1>LinkedIn<br /><em>Post Writing</em></h1>
+    <p class="hero-desc">
+      A LinkedIn post written for Signia Hearing, demonstrating the ability to translate complex health data into accessible, engaging content for a general audience. The original post served as the creative brief and tone reference; the new post restructures the narrative around a compelling WHO statistic.
+    </p>
+    <div class="tag-row">
+      <span class="tag">Content Writing</span>
+      <span class="tag">Social Media</span>
+      <span class="tag">Healthcare</span>
+      <span class="tag">Brand Voice</span>
+      <span class="tag">Signia Hearing</span>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="content-wrap">
+
+    <section>
+      <div class="section-label">Side-by-Side Comparison</div>
+      <h2>Reference post vs. <em>redesigned post</em></h2>
+      <p>The reference post (left) is the original, written from personal experience. The redesigned post (right) reframes the same story around a WHO statistic to increase credibility and reach for a branded campaign context.</p>
+
+      <div class="compare-grid">
+
+        <div>
+          <div class="compare-label">Reference Post</div>
+          <div class="original-note">
+            <em>Original LinkedIn post by Amel Zarrar (@WSAudiology)</em><br /><br />
+            "Hearing loss is often invisible.<br /><br />
+            For many people, it is not just about missing sounds. It can affect confidence, conversations, and even the feeling of being connected in everyday moments.<br /><br />
+            Over the next few days, I'll be trying the new sleek hearing aids from Signia Hearing to understand how modern hearing technology fits naturally into everyday life.<br /><br />
+            This is a powerful reminder of how innovation can help us confidently connect. Grateful to get a chance to hear the world through someone else's ears 🎧<br /><br />
+            Can you guess I'm wearing a hearing aid here?"
+          </div>
+        </div>
+
+        <div>
+          <div class="compare-label new">Redesigned Post</div>
+          <div class="li-card">
+            <div class="li-card-header">
+              <div class="li-avatar">AZ</div>
+              <div class="li-meta">
+                <div class="li-name">Amel Zarrar · You</div>
+                <div class="li-sub">Working student UX writer @WSAudiology</div>
+                <div class="li-time">5min ago · 🌐</div>
+              </div>
+            </div>
+            <div class="li-body">
+              <p>According to the WHO, nearly 1 in 4 people worldwide could experience hearing loss by 2050.</p>
+              <p>As hearing loss becomes more common globally, technology is playing an increasingly important role in making hearing support more accessible and user-friendly.</p>
+              <p>The Signia Active Mini IX is designed to combine hearing support with modern lifestyle needs through a sleek, ready-to-wear design that integrates naturally into everyday life.</p>
+              <p>Innovations in hearing healthcare are no longer only about medical devices. They are also about improving communication, confidence, and everyday experiences for users.</p>
+              <a href="#" class="li-cta">Learn more: [link]</a>
+              <div class="li-banner">
+                <div class="li-banner-headline">Hearing loss is more common than you think.</div>
+                <div class="li-brand">SIGNIA HEARING</div>
+              </div>
+            </div>
+            <div class="li-stats">□ □ 247 &nbsp;&nbsp;&nbsp; 18 comments · 34 reposts</div>
+            <div class="li-actions">
+              <div class="li-action">□ Like</div>
+              <div class="li-action">□ Comment</div>
+              <div class="li-action">□ Repost</div>
+              <div class="li-action">□ Send</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Post Copy</div>
+      <h2>Full <em>copy text</em></h2>
+
+      <div class="post-copy-block">
+        <p>According to the WHO, nearly 1 in 4 people worldwide could experience hearing loss by 2050.</p>
+        <p>As hearing loss becomes more common globally, technology is playing an increasingly important role in making hearing support more accessible and user-friendly.</p>
+        <p>The Signia Active Mini IX is designed to combine hearing support with modern lifestyle needs through a sleek, ready-to-wear design that integrates naturally into everyday life.</p>
+        <p>Innovations in hearing healthcare are no longer only about medical devices. They are also about improving communication, confidence, and everyday experiences for users.</p>
+        <p class="cta-line">Learn more: [link]</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Writing Approach</div>
+      <h2>Why it was <em>written this way</em></h2>
+
+      <div class="approach-grid">
+        <div class="approach-card">
+          <div class="approach-title">Lead with data</div>
+          <div class="approach-desc">Opens with a WHO statistic to immediately establish credibility and urgency — a proven hook for professional audiences.</div>
+        </div>
+        <div class="approach-card">
+          <div class="approach-title">Accessible tone</div>
+          <div class="approach-desc">Avoids clinical jargon, making complex health topics approachable to a broad LinkedIn audience beyond healthcare specialists.</div>
+        </div>
+        <div class="approach-card">
+          <div class="approach-title">Brand integration</div>
+          <div class="approach-desc">Introduces the Signia Active Mini IX naturally within the context — not as a promotional claim, but as a response to a real need.</div>
+        </div>
+        <div class="approach-card">
+          <div class="approach-title">Human-centred close</div>
+          <div class="approach-desc">Shifts focus from product to people, emphasising communication and confidence rather than features or specifications.</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <a href="index.html">← Back to Portfolio</a> &nbsp;·&nbsp; Amel Zarrar &nbsp;·&nbsp; UX Content Designer
+  </footer>
+
+</body>
+</html>
